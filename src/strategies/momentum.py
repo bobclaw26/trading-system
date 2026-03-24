@@ -31,14 +31,15 @@ class MomentumStrategy(BaseStrategy):
     
     def __init__(self, config: StrategyConfig):
         """Initialize Momentum strategy."""
-        super().__init__(config)
-        
+        # Set parameters before calling super().__init__ because validate_parameters() is called there
         self.momentum_period = config.parameters.get('momentum_period', 10)
         self.ema_period = config.parameters.get('ema_period', 20)
         self.rsi_period = config.parameters.get('rsi_period', 14)
         self.min_rsi_buy = config.parameters.get('min_rsi_buy', 40)
         self.max_rsi_sell = config.parameters.get('max_rsi_sell', 60)
         self.momentum_threshold = config.parameters.get('momentum_threshold', 0.001)
+        
+        super().__init__(config)
     
     def validate_parameters(self) -> bool:
         """Validate strategy parameters."""

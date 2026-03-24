@@ -198,6 +198,7 @@ class BaseStrategy(ABC):
     def summary(self) -> str:
         """Return summary of strategy and its performance."""
         metrics = self.calculate_metrics()
+        avg_return = metrics.get('avg_trade_return', 0.0)
         return f"""
 Strategy: {self.config.name}
 Description: {self.config.description}
@@ -208,7 +209,7 @@ Metrics:
 - Win Rate: {metrics['win_rate']:.2%}
 - Max Drawdown: {metrics['max_drawdown']:.2%}
 - Number of Trades: {metrics['num_trades']}
-- Avg Trade Return: {metrics['avg_trade_return']:.2%}
+- Avg Trade Return: {avg_return:.2%}
 
 Configuration: {self.get_config_dict()}
 """

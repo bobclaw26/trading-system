@@ -33,14 +33,15 @@ class MeanReversionStrategy(BaseStrategy):
     
     def __init__(self, config: StrategyConfig):
         """Initialize Mean Reversion strategy."""
-        super().__init__(config)
-        
+        # Set parameters before calling super().__init__ because validate_parameters() is called there
         self.bb_period = config.parameters.get('bb_period', 20)
         self.bb_std = config.parameters.get('bb_std', 2.0)
         self.rsi_period = config.parameters.get('rsi_period', 14)
         self.rsi_overbought = config.parameters.get('rsi_overbought', 70)
         self.rsi_oversold = config.parameters.get('rsi_oversold', 30)
         self.sma_period = config.parameters.get('sma_period', 20)
+        
+        super().__init__(config)
     
     def validate_parameters(self) -> bool:
         """Validate strategy parameters."""

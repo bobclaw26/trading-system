@@ -32,12 +32,13 @@ class MAcrossoverStrategy(BaseStrategy):
     
     def __init__(self, config: StrategyConfig):
         """Initialize MA Crossover strategy."""
-        super().__init__(config)
-        
+        # Set parameters before calling super().__init__ because validate_parameters() is called there
         self.fast_ma = config.parameters.get('fast_ma', 20)
         self.slow_ma = config.parameters.get('slow_ma', 50)
         self.use_volume_filter = config.parameters.get('use_volume_filter', False)
         self.min_volume_percentile = config.parameters.get('min_volume_percentile', 50)
+        
+        super().__init__(config)
     
     def validate_parameters(self) -> bool:
         """Validate strategy parameters."""
