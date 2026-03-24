@@ -1,0 +1,51 @@
+# MA Crossover Strategy Configuration
+# Phase 1 - Simple Moving Average Crossover Strategy
+
+strategy:
+  name: "MA Crossover - Phase 1"
+  description: "Simple Moving Average Crossover Strategy"
+  type: "ma_crossover"
+
+# Strategy-specific parameters
+parameters:
+  fast_ma: 20
+  slow_ma: 50
+  use_volume_filter: false
+  min_volume_percentile: 50
+
+# Position sizing and risk management
+position_sizing:
+  base_size: 1.0
+  max_positions: 10
+  use_dynamic_sizing: false
+  scaling_factor: 1.0
+
+risk_management:
+  stop_loss_pct: 0.02      # 2% stop loss
+  take_profit_pct: 0.05    # 5% take profit
+  max_drawdown_tolerance: 0.15
+
+# Backtesting configuration
+backtesting:
+  start_date: "2023-01-01"
+  end_date: "2024-01-01"
+  initial_capital: 100000
+  commission_pct: 0.001    # 0.1% per trade
+  slippage_pct: 0.0005     # 0.05% slippage
+
+# Data configuration
+data:
+  frequency: "D"           # Daily
+  required_columns:
+    - Open
+    - High
+    - Low
+    - Close
+    - Volume
+
+# Logging and monitoring
+logging:
+  level: "INFO"
+  save_signals: true
+  save_metrics: true
+  output_dir: "./results"
